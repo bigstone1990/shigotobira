@@ -30,6 +30,7 @@ export interface SharedData {
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
     [key: string]: unknown;
+    flash: Flash;
 }
 
 export interface User {
@@ -42,4 +43,10 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
     kana: string;
+}
+
+interface Flash {
+    id: string | null;
+    message: string | null;
+    status: 'success' | 'info' | 'warning' | 'error' | null;
 }
