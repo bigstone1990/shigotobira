@@ -9,6 +9,8 @@ export default function Flash() {
     useEffect(() => {
         if (!flash.id || !flash.message || !flash.status) return;
 
+        if (sessionStorage.getItem(`flash_${flash.id}`)) return;
+
         switch (flash.status) {
             case 'success':
                 toast.success(flash.message);
@@ -25,8 +27,9 @@ export default function Flash() {
             default:
                 toast(flash.message);
         }
+
+        sessionStorage.setItem(`flash_${flash.id}`, "shown");
     }, [flash.id, flash.message, flash.status]);
-    const state = { ...window.history.state };
-    console.log(state)
+
     return null;
 }
